@@ -47,8 +47,6 @@
 			<groupId>com.oracle</groupId>
 			<artifactId>ojdbc8</artifactId>
 			<version>12.2.0.1</version>
-			<!-- COMMENT THE TWO BELOW OUT IF RUNNING LOCALLY ON MACHINE -->
-			<!-- THE FOLLOWING IS HERE BECAUSE JENKINS IS CRAP -->
 			<scope>system</scope>
 			<systemPath>${basedir}/lib/ojdbc8-12.2.0.1.jar</systemPath>
 		</dependency>
