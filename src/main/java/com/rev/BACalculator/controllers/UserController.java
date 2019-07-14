@@ -3,17 +3,16 @@ package com.rev.BACalculator.controllers;
 import javax.persistence.EntityManager;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.web.servlet.server.Session;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 
 import com.rev.BACalculator.model.User;
 import com.rev.BACalculator.service.UserService;
 
-@RestController
+@Controller
 @RequestMapping("users")
 public class UserController {
 
@@ -24,15 +23,14 @@ public class UserController {
 	private UserService userService;
 	
 	@PostMapping("/login.do")
-	public @ResponseBody void login(@RequestParam("username") String username, 
+	public @ResponseBody String login(@RequestParam("username") String username, 
 									@RequestParam("password") String password) 
 	{
 		System.out.println("UserController->login");
 		
 		User loginUser = userService.login(username, password);
 		
-		//TODO: STORE SESSION VARS
-		
+		return loginUser == null ? "Failure" : "Success";
 		
 		
 	}
