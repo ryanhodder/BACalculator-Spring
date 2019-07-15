@@ -32,7 +32,6 @@ public class UserController {
 		
 		return loginUser == null ? "Failure" : "Success";
 		
-		
 	}
 	
 	@PostMapping("/register.do")
@@ -51,6 +50,7 @@ public class UserController {
 		luser.setBodyweight(bodyWeight);
 		
 		User regUser = userService.register(luser);
+		
 		
 	} 
 	

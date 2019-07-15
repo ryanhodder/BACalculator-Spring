@@ -1,6 +1,7 @@
 package com.rev.BACalculator.dao;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -17,10 +18,16 @@ public class UserDAO implements IUserDAO {
 	@Override
 	public User login(String username, String password) 
 	{
-		User returnable = (User) em.createNamedQuery("login")
-		.setParameter("username", username)
-		.setParameter("password", password).getSingleResult();
-		return returnable;
+		try 
+		{
+			User returnable = (User) em.createNamedQuery("login")
+					.setParameter("username", username)
+					.setParameter("password", password).getSingleResult();
+					return returnable;	
+		}catch(NoResultException nre) 
+		{
+			return null;	
+		}
 	}
 
 	@Override
