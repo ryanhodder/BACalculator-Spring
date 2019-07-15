@@ -1,7 +1,5 @@
 package com.rev.BACalculator.controllers;
 
-import javax.persistence.EntityManager;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -18,9 +16,6 @@ import com.rev.BACalculator.service.UserService;
 @RequestMapping("users")
 public class UserController {
 
-	@Autowired
-	private EntityManager em;
-	
 	@Autowired
 	private UserService userService;
 	
@@ -52,7 +47,6 @@ public class UserController {
 		luser.setBodyweight(bodyWeight);
 		
 		User regUser = userService.register(luser);
-		
 		
 	} 
 	

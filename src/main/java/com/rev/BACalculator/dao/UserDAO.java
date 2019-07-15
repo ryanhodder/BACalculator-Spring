@@ -18,14 +18,19 @@ public class UserDAO implements IUserDAO {
 	@Override
 	public User login(String username, String password) 
 	{
+		System.out.println("username : " + username);
+		
+		System.out.println("password : " + password);
+		
 		try 
 		{
-			User returnable = (User) em.createNamedQuery("login")
+			User returnable = em.createNamedQuery("login", User.class)
 					.setParameter("username", username)
 					.setParameter("password", password).getSingleResult();
 					return returnable;	
 		}catch(NoResultException nre) 
 		{
+			System.out.println("no results, login failed");
 			return null;	
 		}
 	}
