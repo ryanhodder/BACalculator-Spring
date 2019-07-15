@@ -3,8 +3,8 @@ package com.rev.BACalculator.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -78,5 +78,54 @@ public class UserController {
 		
 		return "shit";
 	} 
+	
+	@PutMapping("/update.do")
+	public @ResponseBody String update(@RequestParam("username") String userName, @RequestParam("password") String password,
+			   @RequestParam("firstname") String firstName, @RequestParam("lastname") String lastName,
+			   @RequestParam("email") String email, @RequestParam("gender") String gender,
+			   @RequestParam("bodyweight") String bodyWeight) 
+	{
+		
+		User luser = new User();
+		
+		System.out.println(userName);
+		
+		System.out.println(password);
+		
+		System.out.println(lastName);
+		
+		System.out.println(firstName);
+		
+		System.out.println(email);
+		
+		System.out.println(gender);
+		
+		System.out.println(bodyWeight);
+		
+		luser.setUsername(userName);
+		luser.setPassword(password);
+		luser.setFirstname(firstName);
+		luser.setLastname(lastName);
+		luser.setEmail(email);
+		luser.setGender(gender);
+		luser.setBodyweight(Double.parseDouble(bodyWeight));
+		
+		int successCode = userService.update(luser);
+		
+		JsonObject returnable = new JsonObject();
+		
+		if (successCode == 1) 
+		{
+			returnable.addProperty("msg", "success");
+			
+		}
+		else 
+		{
+			returnable.addProperty("msg", "Failure");
+		}
+			
+		return returnable.toString();
+		
+	}
 	
 }

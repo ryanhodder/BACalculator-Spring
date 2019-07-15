@@ -5,6 +5,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.rev.BACalculator.Exceptions.UpdateFailedException;
 import com.rev.BACalculator.dao.UserDAO;
 import com.rev.BACalculator.model.User;
 import com.rev.BACalculator.validator.UserValidator;
@@ -35,6 +36,21 @@ public class UserServiceImp implements UserService {
 		User luser = userDAO.register(user);
 		
 		return luser;
+	}
+
+	@Override
+	public int update(User luser) {
+		validator.validateUser(luser);
+		
+		int numRowsUpdated = userDAO.update(luser);
+		
+		if(numRowsUpdated == 0) 
+		{
+			throw new UpdateFailedException("No rows were updated.");
+			
+		}
+		return numRowsUpdated;
+		
 	}
 
 }

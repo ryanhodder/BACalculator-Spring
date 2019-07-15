@@ -41,4 +41,18 @@ public class UserDAO implements IUserDAO {
 		return user;
 	}
 
+	public int update(User luser) {
+		return em.createNamedQuery("update")
+				.setParameter("firstname", luser.getFirstname())
+				.setParameter("lastname", luser.getLastname())
+				.setParameter("username", luser.getUsername())
+				.setParameter("password", luser.getPassword())
+				.setParameter("email", luser.getEmail())
+				.setParameter("bodyweight", luser.getBodyweight())
+				.setParameter("gender", luser.getGender())
+				.setParameter("userid", luser.getUserid()).executeUpdate();
+		
+	}
+	
+
 }

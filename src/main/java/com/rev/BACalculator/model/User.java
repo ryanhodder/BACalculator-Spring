@@ -14,7 +14,11 @@ import javax.persistence.Table;
 @NamedQueries({
 @NamedQuery(name = "login",
 			query = "SELECT u FROM User u where u.username = "
-					+ ":username AND u.password = :password")
+					+ ":username AND u.password = :password"),
+@NamedQuery(name = "update",
+			query = "UPDATE User u SET u.firstname = :firstname, u.lastname = :lastname, u.username = :username,"
+					+ " u.password = :password, u.email = :email, u.bodyweight = :bodyweight, u.gender = :gender"
+					+ " WHERE u.userid = :userid")
 })
 @Table(name="users")
 public class User {
