@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.JsonObject;
 import com.rev.BACalculator.model.User;
 import com.rev.BACalculator.service.UserService;
 
@@ -27,7 +28,18 @@ public class UserController {
 		
 		User loginUser = userService.login(username, password);
 		
-		return loginUser == null ? "Failure" : "Success";
+		JsonObject j = new JsonObject();
+		
+		j.addProperty("userid", loginUser.getUserid());
+		j.addProperty("firstname", loginUser.getFirstname());
+		j.addProperty("lastname", loginUser.getLastname());
+		j.addProperty("username", loginUser.getUsername());
+		j.addProperty("password", loginUser.getPassword());
+		j.addProperty("email", loginUser.getEmail());
+		j.addProperty("gender", loginUser.getGender());
+		j.addProperty("bodyweight", loginUser.getBodyweight());
+
+		return j.toString();
 		
 	}
 	
