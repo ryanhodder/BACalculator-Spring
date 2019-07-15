@@ -3,6 +3,7 @@ package com.rev.BACalculator.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -44,22 +45,38 @@ public class UserController {
 	}
 	
 	@PostMapping("/register.do")
-	public @ResponseBody void register(@RequestParam("username") String userName, @RequestParam("password") String password,
+	public @ResponseBody String register(@RequestParam("username") String userName, @RequestParam("password") String password,
 									   @RequestParam("firstname") String firstName, @RequestParam("lastname") String lastName,
 									   @RequestParam("email") String email, @RequestParam("gender") String gender,
-									   @RequestParam("bodyweight") double bodyWeight)
+									   @RequestParam("bodyweight") String bodyWeight)
 	{
 		User luser = new User();
+		
+		System.out.println(userName);
+		
+		System.out.println(password);
+		
+		System.out.println(lastName);
+		
+		System.out.println(firstName);
+		
+		System.out.println(email);
+		
+		System.out.println(gender);
+		
+		System.out.println(bodyWeight);
+		
 		luser.setUsername(userName);
 		luser.setPassword(password);
 		luser.setFirstname(firstName);
 		luser.setLastname(lastName);
 		luser.setEmail(email);
 		luser.setGender(gender);
-		luser.setBodyweight(bodyWeight);
+		luser.setBodyweight(Double.parseDouble(bodyWeight));
 		
 		User regUser = userService.register(luser);
 		
+		return "shit";
 	} 
 	
 }
