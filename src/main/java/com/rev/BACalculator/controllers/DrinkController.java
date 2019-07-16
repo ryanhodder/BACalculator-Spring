@@ -16,13 +16,13 @@ import com.rev.BACalculator.service.DrinkService;
 
 @Controller
 @CrossOrigin(origins = "*", allowedHeaders = "*")
-@RequestMapping("preset")
+@RequestMapping("drink")
 public class DrinkController {
 
 	@Autowired
 	private DrinkService drinkService;
 	
-	@PostMapping("/calculate.do")
+	@PostMapping("/getDrinks.do")
 	public @ResponseBody String getDrinks()
 	{
 		System.out.println("DrinkController->calculate");

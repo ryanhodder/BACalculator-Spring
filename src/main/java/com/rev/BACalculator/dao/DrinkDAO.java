@@ -22,7 +22,7 @@ public class DrinkDAO implements IDrinkDAO{
 			return returnable;
 		}
 		catch(Exception e){
-			System.out.println("getDrinks Exception: " + e);
+			System.out.println("getDrinks Exception: " + e.getMessage());
 			return null;
 		}
 	}
