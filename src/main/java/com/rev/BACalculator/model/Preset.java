@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @NamedQueries({
-	@NamedQuery(name = "getDrinks", query = "SELECT * FROM Preset")
+	@NamedQuery(name = "getDrinks", query = "SELECT p FROM Preset p")
 	})
 @Table(name = "presets")
 public class Preset {
