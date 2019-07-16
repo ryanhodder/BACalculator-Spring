@@ -12,101 +12,114 @@ import javax.persistence.Table;
 
 @Entity
 @NamedQueries({
-@NamedQuery(name = "login",
-			query = "SELECT u FROM User u where u.username = "
-					+ ":username AND u.password = :password"),
-@NamedQuery(name = "update",
-			query = "UPDATE User u SET u.firstname = :firstname, u.lastname = :lastname, u.username = :username,"
-					+ " u.password = :password, u.email = :email, u.bodyweight = :bodyweight, u.gender = :gender"
-					+ " WHERE u.userid = :userid")
-})
-@Table(name="users")
+		@NamedQuery(name = "login", query = "SELECT u FROM User u where u.username = "
+				+ ":username AND u.password = :password"),
+		@NamedQuery(name = "update", query = "UPDATE User u SET u.firstname = :firstname, u.lastname = :lastname, u.username = :username,"
+				+ " u.password = :password, u.email = :email, u.bodyweight = :bodyweight, u.gender = :gender"
+				+ " WHERE u.userid = :userid") })
+@Table(name = "users")
 public class User {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="userid_gen")
-	@SequenceGenerator(name="userid_gen", sequenceName="userid_seq", allocationSize = 1)
-	@Column(name="userid")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "userid_gen")
+	@SequenceGenerator(name = "userid_gen", sequenceName = "userid_seq", allocationSize = 1)
+	@Column(name = "userid")
 	private int userid;
-	
-	@Column(name="firstname")
+
+	@Column(name = "firstname")
 	private String firstname;
-	
-	@Column(name="lastname")
+
+	@Column(name = "lastname")
 	private String lastname;
-	
-	@Column(name="username")
+
+	@Column(name = "username")
 	private String username;
-	
-	@Column(name="password")
+
+	@Column(name = "password")
 	private String password;
-	
-	@Column(name="email")
+
+	@Column(name = "email")
 	private String email;
-	
-	@Column(name="bodyweight")
+
+	@Column(name = "bodyweight")
 	private double bodyweight;
-	
-	@Column(name="gender")
+
+	@Column(name = "gender")
 	private String gender;
-	
+
 	public int getUserid() {
 		return userid;
 	}
+
 	public void setUserid(int userid) {
 		this.userid = userid;
 	}
+
 	public String getFirstname() {
 		return firstname;
 	}
+
 	public void setFirstname(String firstname) {
 		this.firstname = firstname;
 	}
+
 	public String getLastname() {
 		return lastname;
 	}
+
 	public void setLastname(String lastname) {
 		this.lastname = lastname;
 	}
+
 	public String getUsername() {
 		return username;
 	}
+
 	public void setUsername(String username) {
 		this.username = username;
 	}
+
 	public String getPassword() {
 		return password;
 	}
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
 	public String getEmail() {
 		return email;
 	}
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
 	public double getBodyweight() {
 		return bodyweight;
 	}
+
 	public void setBodyweight(double bodyweight) {
 		this.bodyweight = bodyweight;
 	}
+
 	public String getGender() {
 		return gender;
 	}
+
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
+
 	@Override
 	public String toString() {
 		return "User [userid=" + userid + ", firstname=" + firstname + ", lastname=" + lastname + ", username="
 				+ username + ", password=" + password + ", email=" + email + ", bodyweight=" + bodyweight + ", gender="
 				+ gender + "]";
 	}
+
 	public User() {
-		
+
 	}
-	
-	
+
 }
