@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.google.gson.JsonObject;
 import com.rev.BACalculator.model.User;
 import com.rev.BACalculator.service.UserService;
+import com.rev.BACalculator.util.JavaMailUtil;
 
 @Controller
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -83,7 +84,13 @@ public class UserController {
 	public @ResponseBody String findPassword(@RequestParam("email") String email)
 	{
 		System.out.println("UserController->findpassword");
-		JavaMailUtil.
+		try {
+			String recipientPassword = userService.findPassword(email);
+			JavaMailUtil.sendEmail(email, recipientPassword);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			e.printStackTrace(); 
+		}
 		
 		return email;
 	}
