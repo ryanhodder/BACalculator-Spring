@@ -79,6 +79,15 @@ public class UserController {
 		return "shit";
 	} 
 	
+	@PostMapping("/findpassword.do")
+	public @ResponseBody String findPassword(@RequestParam("email") String email)
+	{
+		System.out.println("UserController->findpassword");
+		JavaMailUtil.
+		
+		return email;
+	}
+	
 	@PutMapping("/update.do")
 	public @ResponseBody String update(@RequestParam("username") String userName, @RequestParam("password") String password,
 			   @RequestParam("firstname") String firstName, @RequestParam("lastname") String lastName,

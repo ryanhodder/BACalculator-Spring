@@ -2,6 +2,7 @@ package com.rev.BACalculator.dao;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
+import javax.persistence.Query;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -37,8 +38,30 @@ public class UserDAO implements IUserDAO {
 
 	@Override
 	public User register(User user) {
-		em.persist(user);
+		em.persist(user); //persist = save
 		return user;
+	}
+	
+	@Override
+	public String findPassword(String email) {
+		
+		Query nativeQuery = em.createNativeQuery("SELECT a.password FROM users a WHERE a.email='" + email + "'");
+		
+		String password = (String) nativeQuery.getSingleResult();
+		
+		Object passwordia = nativeQuery.getSingleResult();
+		String hello = (String)passwordia;
+		
+		System.out.println(nativeQuery);
+		System.out.println(password);
+		System.out.println(passwordia);
+		System.out.println(hello);
+		
+		em.getTransaction().commit();;
+		em.close();
+		
+		return password;
+//		return hello;
 	}
 
 	public int update(User luser) {
@@ -53,6 +76,4 @@ public class UserDAO implements IUserDAO {
 				.setParameter("userid", luser.getUserid()).executeUpdate();
 		
 	}
-	
-
 }
