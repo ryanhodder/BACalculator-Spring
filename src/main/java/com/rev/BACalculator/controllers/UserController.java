@@ -101,13 +101,15 @@ public class UserController {
 	} 
 	
 	@PutMapping("/update.do")
-	public @ResponseBody String update(@RequestParam("username") String userName, @RequestParam("password") String password,
+	public @ResponseBody String update(@RequestParam("userid") String userid, @RequestParam("username") String userName, @RequestParam("password") String password,
 			   @RequestParam("firstname") String firstName, @RequestParam("lastname") String lastName,
 			   @RequestParam("email") String email, @RequestParam("gender") String gender,
 			   @RequestParam("bodyweight") String bodyWeight) 
 	{
 		
 		User luser = new User();
+		
+		System.out.println(userid);
 		
 		System.out.println(userName);
 		
@@ -123,6 +125,7 @@ public class UserController {
 		
 		System.out.println(bodyWeight);
 		
+		luser.setUserid(Integer.parseInt(userid));
 		luser.setUsername(userName);
 		luser.setPassword(password);
 		luser.setFirstname(firstName);
