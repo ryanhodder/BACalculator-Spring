@@ -27,5 +27,12 @@ public class TransactionServiceImp implements TransactionService{
 		return tList;
 	}
 
+	@Override
+	public List<Transaction> getUserTransactions(int userIdInt) {
+		
+		List<Transaction> tList = transactionDAO.getUserTransactions(userIdInt);
+		return tList;
+	}
+
 	
 }

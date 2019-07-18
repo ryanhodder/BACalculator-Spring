@@ -11,35 +11,37 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="calculation")
+@NamedQueries({ @NamedQuery(name = "getUserTransactions", query = "SELECT t FROM Transaction t where t.userid = "
+		+ ":userid") })
+@Table(name = "calculation")
 public class Transaction {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "transactionid_seq")
 	@SequenceGenerator(name = "transactionid_gen", sequenceName = "transactionid_seq", allocationSize = 1)
-	@Column(name="transactionid")
+	@Column(name = "transactionid")
 	private int transactionid;
-	
-	@Column(name="amount")
+
+	@Column(name = "amount")
 	private double amount;
-	
-	@Column(name="strength")
+
+	@Column(name = "strength")
 	private double strength;
-	
-	@Column(name="userid")
+
+	@Column(name = "userid")
 	private int userid;
-	
-	@Column(name="time")
+
+	@Column(name = "time")
 	private int time;
-	
-	@Column(name="gender")
-	private int gender;
-	
-	@Column(name="bodyweight")
-	private int bodyweight;
-	
+
+	@Column(name = "gender")
+	private String gender;
+
+	@Column(name = "bodyweight")
+	private double bodyweight;
+
 	public Transaction() {
-		
+
 	}
 
 	public int getTransactionid() {
@@ -82,19 +84,19 @@ public class Transaction {
 		this.time = time;
 	}
 
-	public int getGender() {
+	public String getGender() {
 		return gender;
 	}
 
-	public void setGender(int gender) {
+	public void setGender(String gender) {
 		this.gender = gender;
 	}
 
-	public int getBodyweight() {
+	public double getBodyweight() {
 		return bodyweight;
 	}
 
-	public void setBodyweight(int bodyweight) {
+	public void setBodyweight(double bodyweight) {
 		this.bodyweight = bodyweight;
 	}
 
@@ -103,8 +105,5 @@ public class Transaction {
 		return "Transaction [transactionid=" + transactionid + ", amount=" + amount + ", strength=" + strength
 				+ ", userid=" + userid + ", time=" + time + ", gender=" + gender + ", bodyweight=" + bodyweight + "]";
 	}
-	
-	
-	
-	
+
 }

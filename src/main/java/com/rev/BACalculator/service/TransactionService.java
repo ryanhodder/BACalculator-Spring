@@ -8,4 +8,5 @@ public interface TransactionService {
 
 	void setTransaction(Transaction t);
 	List<Transaction> getAllTransactions();
+	List<Transaction> getUserTransactions(int userIdInt);
 }
