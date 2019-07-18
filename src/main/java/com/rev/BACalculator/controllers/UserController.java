@@ -45,6 +45,26 @@ public class UserController {
 		
 	}
 	
+	@PostMapping("/findpassword.do")
+	public @ResponseBody String findPassword(@RequestParam("email") String email)
+	{
+		System.out.println("UserController->findpassword");
+		String recipientPassword = "";
+		try {
+			recipientPassword = userService.findPassword(email);
+			JavaMailUtil.sendEmail(email, recipientPassword);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			e.printStackTrace(); 
+		}
+		
+		JsonObject j = new JsonObject();
+		
+		j.addProperty("email", recipientPassword);
+			
+		return j.toString();
+	}
+	
 	@PostMapping("/register.do")
 	public @ResponseBody String register(@RequestParam("username") String userName, @RequestParam("password") String password,
 									   @RequestParam("firstname") String firstName, @RequestParam("lastname") String lastName,
@@ -79,21 +99,6 @@ public class UserController {
 		
 		return "shit";
 	} 
-	
-	@PostMapping("/findpassword.do")
-	public @ResponseBody String findPassword(@RequestParam("email") String email)
-	{
-		System.out.println("UserController->findpassword");
-		try {
-			String recipientPassword = userService.findPassword(email);
-			JavaMailUtil.sendEmail(email, recipientPassword);
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-			e.printStackTrace(); 
-		}
-		
-		return email;
-	}
 	
 	@PutMapping("/update.do")
 	public @ResponseBody String update(@RequestParam("username") String userName, @RequestParam("password") String password,

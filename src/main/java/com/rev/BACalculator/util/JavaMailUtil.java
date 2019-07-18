@@ -18,11 +18,10 @@ import com.sun.istack.internal.logging.Logger;
 public class JavaMailUtil {
 	public static void sendEmail(String recipient, String recipientPassword) throws Exception {
 
-		System.out.println("Preparing to send email...");
-
-		String myAccountEmail = "jerkins1337@gmail.com";
+		String myAccountEmail = "jerkins1337@gmail.com"; //admin's dummy account details (sole purpose = send password recovery email)
 		String password = "JackieChan420";
 
+		//set properties
 		Properties properties = new Properties();
 		properties.put("mail.smtp.auth", true);
 		properties.put("mail.smtp.starttls.enable", "true");
@@ -31,25 +30,18 @@ public class JavaMailUtil {
 		// properties.setProperty("mail.smtp.user", myAccountEmail);
 		// properties.setProperty("mail.smtp.password", password);
 		// properties.setProperty("mail.smtp.auth", "true");
-
-		System.out.println("Properties set...");
-
+		
+		//create session
 		Session session = Session.getInstance(properties, new Authenticator() {
 			@Override
 			protected PasswordAuthentication getPasswordAuthentication() {
 				return new PasswordAuthentication(myAccountEmail, password);
 			}
 		});
-
-		System.out.println("Session created...");
-
-		Message message = prepareMassage(session, myAccountEmail, recipient, recipientPassword);
-
-		System.out.println("Message created and prepared...");
-
-		Transport.send(message);
-
-		System.out.println("Message sent!");
+		
+		Message message = prepareMassage(session, myAccountEmail, recipient, recipientPassword); //Message creation/preparation
+		
+		Transport.send(message); //sends the message
 	}
 
 	private static Message prepareMassage(Session session, String myAccountEmail, String recipient,
@@ -60,9 +52,16 @@ public class JavaMailUtil {
 			message.setRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
 			message.setSubject("Your password details");
 
-			String content = "<h2>Hello!</h2>" + "<br/>Your request to find your password has been received!" + "<br/>"
-					+ "<br/>Your password is: " + recipientPassword + "<br/>" + "<br/>Best regards," + "<br/>"
-					+ "<br/>Team Boozy" + "<br/>P.S. Don't drink and drive!";
+			String content = "<h2>Hello!</h2>" 
+			+ "<br/>Your request to find your password has been received!" 
+					+ "<br/>"
+					+ "<br/>Your password is: " 
+					+ recipientPassword 
+					+ "<br/>" 
+					+ "<br/>Best regards," 
+					+ "<br/>"
+					+ "<br/>Team Boozy" 
+					+ "<br/>P.S. Don't drink and drive!";
 			message.setContent(content, "text/html");
 			// message.setText("Hey there, your ");
 			return message;

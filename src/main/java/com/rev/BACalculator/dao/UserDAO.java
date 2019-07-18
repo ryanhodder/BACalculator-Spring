@@ -47,21 +47,9 @@ public class UserDAO implements IUserDAO {
 		
 		Query nativeQuery = em.createNativeQuery("SELECT a.password FROM users a WHERE a.email='" + email + "'");
 		
-		String password = (String) nativeQuery.getSingleResult();
-		
-		Object passwordia = nativeQuery.getSingleResult();
-		String hello = (String)passwordia;
-		
-		System.out.println(nativeQuery);
-		System.out.println(password);
-		System.out.println(passwordia);
-		System.out.println(hello);
-		
-		em.getTransaction().commit();;
-		em.close();
+		String password = (String) nativeQuery.getSingleResult();		
 		
 		return password;
-//		return hello;
 	}
 
 	public int update(User luser) {
