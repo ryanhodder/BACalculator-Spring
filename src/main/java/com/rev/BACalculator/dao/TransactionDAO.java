@@ -36,7 +36,7 @@ public class TransactionDAO implements ITransactionDAO{
 		
 		try 
 		{
-			List<Transaction> returnable = (List<Transaction>) em.createNamedQuery("getUserTransactions", Transaction.class).getResultList();
+			List<Transaction> returnable = (List<Transaction>) em.createNamedQuery("getUserTransactions", Transaction.class).setParameter("userid", userIdInt).getResultList();
 			return returnable;
 		}
 		catch(Exception e) {
