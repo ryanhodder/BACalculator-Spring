@@ -42,7 +42,7 @@ public class UserDAO implements IUserDAO {
 		em.persist(user); //persist = save
 		return user;
 	}
-	
+
 	@Override
 	public String findPassword(String email) {
 		

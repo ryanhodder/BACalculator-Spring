@@ -8,7 +8,9 @@ public interface IUserDAO
 {
 	User register(User user);
 
-	User login(String username, String password);
-	
 	String findPassword(String email);
+
+	User login(String username, String password);
+
+	
 }
