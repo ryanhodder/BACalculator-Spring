@@ -2,6 +2,7 @@ package com.rev.BACalculator.dao;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -40,7 +41,7 @@ public class UserDAO implements IUserDAO {
 		em.persist(user);
 		return user;
 	}
-
+	@Transactional
 	public int update(User luser) {
 		return em.createNamedQuery("update")
 				.setParameter("firstname", luser.getFirstname())
