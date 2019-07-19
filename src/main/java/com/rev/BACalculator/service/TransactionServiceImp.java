@@ -17,6 +17,7 @@ public class TransactionServiceImp implements TransactionService{
 	private TransactionDAO transactionDAO;
 	
 	@Override
+	@Transactional
 	public void setTransaction(Transaction t) {
 		transactionDAO.setTransaction(t);
 	}

@@ -82,7 +82,7 @@ public class TransactionController {
 		
 	}
 	
-	@GetMapping("/setTransaction.do")
+	@PostMapping("/setTransaction.do")
 	public void setTransaction(@RequestParam("amount") double amount, @RequestParam("strength") double strength,
 								@RequestParam("userid") int userid, @RequestParam("time") int time,
 								@RequestParam("gender") String gender, @RequestParam("bodyweight") double bodyweight) 
