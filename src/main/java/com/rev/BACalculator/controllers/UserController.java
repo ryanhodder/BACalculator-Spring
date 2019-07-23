@@ -66,7 +66,7 @@ public class UserController {
 	}
 	
 	@PostMapping("/register.do")
-	public @ResponseBody String register(@RequestParam("username") String userName, @RequestParam("password") String password,
+	public @ResponseBody void register(@RequestParam("username") String userName, @RequestParam("password") String password,
 									   @RequestParam("firstname") String firstName, @RequestParam("lastname") String lastName,
 									   @RequestParam("email") String email, @RequestParam("gender") String gender,
 									   @RequestParam("bodyweight") String bodyWeight)
@@ -97,7 +97,6 @@ public class UserController {
 		
 		User regUser = userService.register(luser);
 		
-		return "shit";
 	} 
 	
 	@PutMapping("/update.do")
