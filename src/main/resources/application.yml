@@ -1,0 +1,6 @@
+spring:
+  profiles:
+    active: dev
+    
+#active: prod
+#can change this depending on if we want to use different environments

@@ -1,0 +1,8 @@
+spring:
+  datasource:
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    url: jdbc:oracle:thin:@boozibrodb.c7amjnr9cphk.us-east-1.rds.amazonaws.com:1521:orcl
+    username: DrunkenMaster
+    password: JackieChan420
+server:
+  port: 8081
